@@ -30,3 +30,12 @@ class Profile(models.Model):
   def get_absolute_url(self):
     return reverse('index')
 
+class Business(models.Model):
+  name = models.CharField(max_length=30)
+  email = models.EmailField(max_length=50,unique=True)
+  description = models.TextField(null=True)
+  neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+  user = models.ForeignKey(Profile,on_delete=models.CASCADE)
+  
+  def __str__(self):
+    return self.name
