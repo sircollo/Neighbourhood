@@ -15,6 +15,23 @@ class Neighbourhood(models.Model):
   def __str__(self):
     return self.name
   
+  def create_neighbourhood(self):
+    self.save()
+    
+  def delete_neighbourhood(self):
+    self.delete()
+  
+  @classmethod
+  def find_neighbourhood_by_id(cls, id):
+    neighbourhood = Neighbourhood.objects.get(id=id)
+    return neighbourhood
+  
+  @classmethod
+  def update_neighbourhood(cls,name):
+    neighbourhood = Neighbourhood.objects.get(name=name)
+    neighbourhood.save()
+    
+  
   
 class Profile(models.Model):
   first_name = models.CharField(max_length=30)
