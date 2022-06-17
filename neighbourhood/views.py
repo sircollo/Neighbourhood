@@ -13,7 +13,7 @@ def signup(request):
     form = SignUpForm(request.POST)
     if form.is_valid():
       form.save()
-      return redirect('login')
+      return redirect('signin')
     else:
      messages.warning(request,'Password Mismatch')
       
