@@ -46,6 +46,15 @@ class Profile(models.Model):
   
   def get_absolute_url(self):
     return reverse('index')
+  
+  def save_profile(self):
+    self.save()
+    
+  def update_profile(self):
+    self.update()
+    
+  def delete_profile(self):
+    self.delete()
 
 class Business(models.Model):
   name = models.CharField(max_length=30)
