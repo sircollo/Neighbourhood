@@ -56,3 +56,9 @@ class SignOutView(View):
     logout(request)
     # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return redirect('index')
+  
+def profile(request,id):
+  user = request.user
+  profiles=Profile.objects.get(user=id)
+  context = {'profile':profiles}
+  return render(request, 'profiles.html', context)
