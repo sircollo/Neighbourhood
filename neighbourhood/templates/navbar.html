@@ -53,24 +53,26 @@
         </li>
 
         <!-- Avatar -->
+        {% if user.is_authenticated %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
             id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+            <img src="{{user.profile.picture.url}}" class="rounded-circle"
               height="22" alt="Avatar" loading="lazy" />
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li>
-              <a class="dropdown-item" href="#">My profile</a>
+              <a class="dropdown-item" href="#">{{user.username}}</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">My Profile</a>
             </li>
             <li>
               <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
             </li>
           </ul>
         </li>
+        {% endif %}
       </ul>
     </div>
   </nav>
