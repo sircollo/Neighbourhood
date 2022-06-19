@@ -11,7 +11,7 @@ class Neighbourhood(models.Model):
   admin = models.ForeignKey("Profile",on_delete=models.CASCADE,related_name='neighbour')
   health_contact = models.IntegerField(null=True)
   police_contact = models.IntegerField(null=True)
-  
+  area_image = CloudinaryField('image', blank=True)
   def __str__(self):
     return self.name
   
