@@ -2,8 +2,9 @@ from django.shortcuts import render
 from .forms import *
 from django.contrib import messages
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from .models import *
+from django.views.generic.edit import View
 # Create your views here.
 def index(request):
   neighbourhoods = Neighbourhood.objects.all()
@@ -49,3 +50,9 @@ def signin(request):
       messages.error(request,'Invalid username or password')
   form = SignInForm()
   return render(request,'registration/login.html',{'form':form})
+
+class SignOutView(View):
+  def get(self,request):
+    logout(request)
+    # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return redirect('index')
