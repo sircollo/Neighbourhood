@@ -8,12 +8,22 @@
   <div id="mySidenav" class="sidenav" style="z-index: 5000;">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">Home</a>
-    <a href="#">My Business</a>
+    {% if user.is_authenticated %}
+    <a href="#">My Businesses</a>
+    {% else %}
     <a href="#">Businesses</a>
+    {% endif %}
     <a href="#">Hospitals</a>
     <a href="#">Police Stations</a>
-    <a href="#">Join a Community</a>
-   
+    {% if user.is_authenticated %}
+    <a href="#">My Community</a>
+    {% else %}
+    <a href="{% url 'register' %}">Join a Community</a>
+    <a href="{% url 'signin' %}">Sign In</a>
+    {% endif %}
+    <a href="#">Hospitals Near Me</a>
+    <a href="#">Police Station</a>
+    
   </div>  
   <!-- Navbar -->
   <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #94A786;">
@@ -57,7 +67,7 @@
               <a class="dropdown-item" href="#">Settings</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
             </li>
           </ul>
         </li>
