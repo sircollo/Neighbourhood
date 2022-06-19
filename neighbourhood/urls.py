@@ -9,6 +9,7 @@ urlpatterns = [
     url('signup/', views.signup, name='register'),
     url('signin/', views.signin, name='signin'),
     url('logout/', SignOutView.as_view(), name='logout'),
+    url('^profile/(\d+)', views.profile, name='profile'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
