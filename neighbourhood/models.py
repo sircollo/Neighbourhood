@@ -38,7 +38,7 @@ class Profile(models.Model):
   last_name = models.CharField(max_length=30)
   about = models.TextField()
   user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
-  picture = CloudinaryField('Profiles')
+  picture = CloudinaryField('Avatar')
   neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, blank=True)
   
   def __str__(self):
