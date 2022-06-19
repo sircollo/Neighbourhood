@@ -12,5 +12,30 @@
   </div>
     <i class="fa fa-angle-double-down blink" aria-hidden="true"></i>
 </div>
+<div class="container-fluid py-4">
+  <div class="hood p-2 text-center">
+    <h2>Neighbourhoods</h2>
+    <hr>
+  </div>
+  <div class="col-md-12">
+    {% for hood in neighbourhoods %}
+    <div class="card" style="width: 500px; height: 200px;">
+      <div class="row no-gutters">
+         <div class="col-sm-5">
+            <img class="card-img" src="{{hood.area_image.url}}" alt="hood" width="100%" height="100%">
+         </div>
+         <div class="col-sm-7">
+            <div class="card-body">
+               <h5 class="card-title">Name: {{hood.name}}</h5>
+               <p class="card-text">Occupants: {{hood.occupants}}</p>
+               <p class="card-text">Location: {{hood.location}}</p>
+               <a href="#" class="btn btn-primary">View Hood</a>
+            </div>
+         </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 
 {% endblock %}

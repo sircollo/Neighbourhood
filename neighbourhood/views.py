@@ -3,10 +3,12 @@ from .forms import *
 from django.contrib import messages
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login
-
+from .models import *
 # Create your views here.
 def index(request):
-  return render(request, 'index.html')
+  neighbourhoods = Neighbourhood.objects.all()
+  context = {'neighbourhoods': neighbourhoods}
+  return render(request, 'index.html', context)
 
 def signup(request):
   if request.method == 'POST':
