@@ -14,7 +14,17 @@ def signup(request):
   if request.method == 'POST':
     form = SignUpForm(request.POST)
     if form.is_valid():
-      form.save()
+      username = form.cleaned_data['username']
+      password = form.cleaned_data['password1']
+      firstname = form.cleaned_data['first_name']
+      lastname = form.cleaned_data['last_name']
+      phone_number = form.cleaned_data['phone_number']
+      email = form.cleaned_data['email']
+      user = User.objects.create_user(username,email=email, password=password)
+      user.first_name = firstname 
+      user.last_name = lastname  
+      user.phone_number = phone_number
+      user.save()
       return redirect('signin')
     else:
      messages.warning(request,'Password Mismatch')
