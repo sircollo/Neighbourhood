@@ -5,6 +5,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from .models import *
 from django.views.generic.edit import View
+from django.views.generic import ListView
+from django.db.models import Q
 # Create your views here.
 def index(request):
   neighbourhoods = Neighbourhood.objects.all()
@@ -94,4 +96,23 @@ def neighbourhoods(request):
   neighbourhoods = Neighbourhood.objects.all()
   context = {'neighbourhoods':neighbourhoods}
   return render(request, 'neighbourhoods.html', context)
+
+# class search_business(ListView):
+#   model= Business
+#   template_name = 'business_list.html'
   
+
+#   def search_business(request):
+#     query = request.GET.get('search_business')
+#     businesses = Business.objects.filter(
+#       Q(name__icontains=query)
+    
+#     )
+#     # if not search_user
+#     return businesses
+def search(request):
+    query  = request.GET.get('search_business')
+    if not query :
+      query = ""
+    businesses = Business.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+    return render(request, 'business_list.html', {'businesses': businesses})
