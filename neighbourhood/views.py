@@ -89,4 +89,9 @@ def business(request):
   business = Business.objects.all()
   context = {'businesses':business}
   return render(request, 'businesses.html', context)
+
+def neighbourhoods(request):
+  neighbourhoods = Neighbourhood.objects.all()
+  context = {'neighbourhoods':neighbourhoods}
+  return render(request, 'neighbourhoods.html', context)
   
