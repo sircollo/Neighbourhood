@@ -140,5 +140,6 @@ def create_post(request):
   return render(request, 'post_form.html',{'form': form})
 
 def postList(request):
-  return render(request, 'posts.html')
+  posts = Post.objects.all()
+  return render(request, 'posts.html',{'posts': posts})
   
