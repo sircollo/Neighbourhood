@@ -62,6 +62,17 @@ class Business(models.Model):
   description = models.TextField(null=True)
   neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE,null=True)
   user = models.ForeignKey(Profile,on_delete=models.CASCADE)
+  poster = CloudinaryField('Poster',default='image.jpg',null=True)
   
   def __str__(self):
     return self.name
+  
+  def create_business(self):
+    self.save()
+    
+  def delete_business(self):
+    self.delete()
+    
+  @classmethod
+  def search_business(cls, name):
+    return cls.objects.filter(name__icontains=name).all()
