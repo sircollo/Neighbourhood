@@ -60,5 +60,27 @@ class SignOutView(View):
 def profile(request,id):
   user = request.user
   profiles=Profile.objects.get(user=id)
-  context = {'profile':profiles}
+  businesses = Business.objects.filter(user=profiles)
+  context = {'profile':profiles,'businesses':businesses}
   return render(request, 'profiles.html', context)
+
+def businesspost(request,id):
+  profiles=Profile.objects.get(user=id)
+  # neighbourhood = Neighbourhood.objects.get(profile=id)
+  users = Business.objects.filter(user=profiles)
+  if request.method == 'POST':
+    form = PostBusinessForm(data=request.POST)
+    if form.is_valid():
+      name = form.cleaned_data['name']
+      email = form.cleaned_data['email']
+      description = form.cleaned_data['description']
+      business = Business(name=name,email=email, description=description,user=profiles)
+      business.save()
+      # form.save()
+      return redirect('profile',id)
+    else:
+     messages.warning(request,'Incorrect Information')
+      
+  form = PostBusinessForm()
+  context = {'form': form, 'profile': profiles,'messages': messages}
+  return render(request, 'post_business.html',context)
