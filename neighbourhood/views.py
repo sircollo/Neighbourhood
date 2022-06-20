@@ -71,12 +71,13 @@ def businesspost(request,id):
   # neighbourhood = Neighbourhood.objects.get(profile=id)
   users = Business.objects.filter(user=profiles)
   if request.method == 'POST':
-    form = PostBusinessForm(data=request.POST)
+    form = PostBusinessForm(request.POST,request.FILES)
     if form.is_valid():
       name = form.cleaned_data['name']
       email = form.cleaned_data['email']
       description = form.cleaned_data['description']
-      business = Business(name=name,email=email, description=description,user=profiles)
+      poster = form.cleaned_data['poster']
+      business = Business(name=name,email=email, description=description,user=profiles,poster=poster)
       business.save()
       # form.save()
       return redirect('profile',id)
