@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/profiles.css' %}">
+<div class="container  py-4">
+  <div class="page-profile">
+    <div class="row">
+      <div class="col-md-3">
+        <section class="panel">
+          <div class="panel-body noradius padding-10">
+            <figure class="margin-bottom-10">
+              <img class="img-responsive" src="{{profile.picture.url}}" alt="" width="250" height="300">
+            </figure>
+            <h6>Full Name</h6>
+                <p>{{profile.first_name}} {{profile.last_name}}</p>
+                <h6>Email</h6>
+                <p class="size-12">{{user.email}}</p>
+            <hr class="half-margins">
+            <!-- About -->
+            <h3 class="text-black">
+              About
+            </h3>
+            <p class="size-12">{{profile.about}}</p>
+            
+            <hr class="half-margins">
+
+          </div>
+        </section>
+      </div>
+      <div class="col-md-5">
+        <div class="tabs white nomargin-top">
+          <ul class="nav nav-tabs tabs-primary">
+            <li class="active">
+              <a href="#overview" data-toggle="tab" class="p-2 text-danger">Overview</a>
+            </li>
+            <li>
+              <a href="#edit" data-toggle="tab" class="text-danger">Edit Profile</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <!-- Overview -->
+            <div id="overview" class="tab-pane active">
+              <hr class="invisible half-margins">
+              <h4>Neighbourhoods</h4>
+            </div>
+            <div id="overview" class="tab-pane active">
+              <hr class="invisible half-margins">
+              <h4>Business</h4>
+            </div>
+            <div id="edit" class="tab-pane">
+              <form class="form-horizontal padding-10" method="get">
+                <h4>Personal Information</h4>
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="profileFirstName">First Name</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="profileFirstName">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="profileLastName">Last Name</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="profileLastName">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="profileAddress">Address</label>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control" id="profileAddress">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="email">Email</label>
+                    <div class="col-md-8">
+                      <input type="email" class="form-control" id="email">
+                    </div>
+                  </div>
+                </fieldset>
+                <hr>
+                <h4>About</h4>
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="profileBio">Bio</label>
+                    <div class="col-md-8">
+                      <textarea class="form-control" rows="3" id="profileBio"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="sky-form">
+                      <label class="col-xs-3 control-label">Profile Image</label>
+                      <div class="col-md-8">
+                        <label for="file" class="input input-file">
+
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <hr>
+
+                <div class="row">
+                  <div class="col-md-9 col-md-offset-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div><!-- /COL 2 -->
+      <!-- COL 3 -->
+      <div class="col-md-4">
+        <section class="panel panel-default">
+          <header class="panel-heading">
+            <h2 class="panel-title elipsis">
+              Business
+            </h2>
+          </header>
+          <div class="panel-body noradius padding-10">
+            <div class="row profile-activity">
+              {% for business in businesses %}
+              <div class="col-xs-10 col-sm-11">
+                <h6><a href="page-sidebar.html">{{business.name}}</a></h6>
+                <p>{{business.description}}</p>
+              </div>
+              {% endfor %}
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- /COL 3 -->
+    </div>
+  </div>
+</div>
+{% endblock %}
