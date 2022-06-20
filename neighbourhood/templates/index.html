@@ -5,9 +5,9 @@
 <div class="container-fluid main-section">
   <div class="row">
     <div class="offset-lg-2 col-lg-8 section-part text-center">
-    <h1 style="color: white;"></h1>
-    <P class="hero-text" style="color: #ca4d4d;"></P>
-    <a href=""><button class="btn btn-danger"></button></a> 
+    <h1 style="color: rgb(241, 59, 59); font-size: 80px;">NeighbourHood</h1>
+    <P class="hero-text" style="color: white;">Join a Communitytoday</P>
+    <a href="{% url 'register' %}"><button class="btn btn-danger">Join Now</button></a> 
   </div>
   </div>
     <i class="fa fa-angle-double-down blink" aria-hidden="true"></i>
@@ -16,25 +16,6 @@
   <div class="hood p-2 text-center">
     <h2>Neighbourhoods</h2>
     <hr>
-  </div>
-  <div class="col-md-12">
-    {% for hood in neighbourhoods %}
-    <div class="card" style="width: 500px; height: 200px;">
-      <div class="row no-gutters">
-         <div class="col-sm-5">
-            <img class="card-img" src="{{hood.area_image.url}}" alt="hood" width="100%" height="100%">
-         </div>
-         <div class="col-sm-7">
-            <div class="card-body">
-               <h5 class="card-title">Name: {{hood.name}}</h5>
-               <p class="card-text">Occupants: {{hood.occupants}}</p>
-               <p class="card-text">Location: {{hood.location}}</p>
-               <a href="#" class="btn btn-primary">View Hood</a>
-            </div>
-         </div>
-      </div>
-    </div>
-    {% endfor %}
   </div>
 </div>
 
