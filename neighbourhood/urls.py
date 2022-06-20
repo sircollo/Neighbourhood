@@ -11,6 +11,7 @@ urlpatterns = [
     url('logout/', SignOutView.as_view(), name='logout'),
     url('^profile/(\d+)', views.profile, name='profile'),
     url('^post_business/(\d+)/', views.businesspost, name='post_a_business'),
+    url('^businesses/', views.business, name='business'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
