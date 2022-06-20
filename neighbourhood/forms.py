@@ -24,6 +24,7 @@ class PostBusinessForm(forms.Form):
   name = forms.CharField(label='bname', max_length=50, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Business Name'}), required=True)
   email = forms.EmailField(label='email', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Business Email'}), required=True)
   description = forms.CharField(label='bname', max_length=50, widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Business Description'}), required=True)
+  poster = forms.ImageField(label='business image',widget=forms.FileInput(attrs={'class':'form-control','placeholder':'Business Poster'}), required=True)
   class Meta:
     model = Business
     fields = '__all__'
