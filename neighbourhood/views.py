@@ -84,3 +84,9 @@ def businesspost(request,id):
   form = PostBusinessForm()
   context = {'form': form, 'profile': profiles,'messages': messages}
   return render(request, 'post_business.html',context)
+
+def business(request):
+  business = Business.objects.all()
+  context = {'businesses':business}
+  return render(request, 'businesses.html', context)
+  
