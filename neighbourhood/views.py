@@ -7,6 +7,7 @@ from .models import *
 from django.views.generic.edit import View
 from django.views.generic import ListView
 from django.db.models import Q
+from .email import send_welcome_email
 # Create your views here.
 def index(request):
   neighbourhoods = Neighbourhood.objects.all()
@@ -28,6 +29,8 @@ def signup(request):
       user.last_name = lastname  
       user.phone_number = phone_number
       user.save()
+      name = (firstname + ' ' + lastname)
+      send_welcome_email(name,email)
       return redirect('signin')
     else:
      messages.warning(request,'Password Mismatch')

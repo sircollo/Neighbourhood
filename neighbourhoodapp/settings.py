@@ -148,6 +148,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='collotests@gmail.com'
+# EMAIL_HOST_PASSWORD='rutikkixghyxstsu' //localhost
+EMAIL_HOST_PASSWORD='olwcytpahhhxlsvm'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -171,6 +177,12 @@ CLOUDINARY_STORAGE = {
     'API_KEY': config('api_key', default=""),
     'API_SECRET': config('api_secret', default=""),
 }
+# Email configurations remember to install python-decouple
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
