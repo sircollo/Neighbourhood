@@ -20,6 +20,7 @@
 <body>
 
 <div class="container py-3 mt-3" style="margin-top:10%">
+  <a href="{% url 'index' %}"> <button class="btn btn-primary">&#8592 Home</button></a>
 <form class="form-horizontal" role="form" action="" method="POST">
   {% csrf_token %}
 <h2>Sign In</h2>
