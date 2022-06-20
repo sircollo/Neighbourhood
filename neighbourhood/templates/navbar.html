@@ -10,6 +10,7 @@
     <a href="{% url 'index' %}">Home</a>
     {% if user.is_authenticated %}
     <a href="#">My Businesses</a>
+    <a href="{% url 'business' %}">All Businesses</a>
     {% else %}
     <a href="{% url 'business' %}">Businesses</a>
     {% endif %}
@@ -36,7 +37,7 @@
         <a class="navbar-brand"  href="{% url 'index' %}">
         <h3 class="text-white">NeighbourHood</h3></a>
       <!-- Search form -->
-      <form class="d-none d-md-flex input-group w-auto my-auto" action="" method="GET">
+      <form class="d-none d-md-flex input-group w-auto my-auto" action="{% url 'search' %}" method="get">
         <input autocomplete="off" type="search" class="form-control rounded"
           placeholder='Search a business' name="search_business" style="min-width: 225px;width: 400px;" />
           <i class="fa-solid fa-magnifying-glass-plus"></i>
