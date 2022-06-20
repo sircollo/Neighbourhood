@@ -14,6 +14,7 @@ urlpatterns = [
     url('^businesses/', views.business, name='business'),
     url('^neighbourhoods/', views.neighbourhoods, name='neighbourhood'),
     url('search/', views.search, name='search'),
+    url('my_businesses/(\d+)/', views.user_business, name='user_business'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
