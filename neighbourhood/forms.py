@@ -2,6 +2,7 @@ from . import models
 from django import forms
 from django.contrib.auth.forms import *
 from django.contrib.auth.models import User
+from .models import *
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(label='firstname', max_length=50, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'First Name'}), required=True)
@@ -18,4 +19,12 @@ class SignInForm(AuthenticationForm):
   class Meta:
     model = User
     fields = ['username','password']
+    
+class PostBusinessForm(forms.Form):
+  name = forms.CharField(label='bname', max_length=50, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Business Name'}), required=True)
+  email = forms.EmailField(label='email', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Business Email'}), required=True)
+  description = forms.CharField(label='bname', max_length=50, widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Business Description'}), required=True)
+  class Meta:
+    model = Business
+    fields = '__all__'
     
