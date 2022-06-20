@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+.posts{
+  margin: 0 auto;
+  /* background-image: url('https://images.unsplash.com/photo-1552337223-9710a0e01fbc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvcnBvcmF0ZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 20px;
+}
+.business-list ul li{
+  padding-top: 4%;
+  list-style-type: none;
+
+}
+</style>
+<div class="container-fluid py-4 justify-content-center m-auto posts">
+  <div class="row">
+    <div class="col-md-5 p-4" style="display: flex;">
+      <div class="poster">
+        <h2 class="text-center text-white">Do you have a business? Post It here</h2>
+        <div class="business-list text-white" style="font-size: 20px;">
+          <ul>
+            <li>Grocery Shops</li>
+            <li>Club Joints</li>
+            <li>Hotels/Eateries</li>
+            <li>Hardware Shops</li>
+            <li>Supermartkets</li>
+            <li>Other Services</li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-7">
+      <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if message %}
+      <div class="form-group">
+        <div class="col-sm-9 text-danger">
+          {{message.error}}
+        </div>
+        </div>
+        {% endif %}
+      <div class="form-group">
+      <label for="firstName" class="col-sm-3 control-label text-white">Business Name*</label>
+      <div class="col-sm-9">
+        {{form.name}}
+      </div>
+      </div>
+      <div class="form-group">
+      <label for="email" class="col-sm-3 control-label text-white">Business Email* </label>
+      <div class="col-sm-9">
+      {{form.email}}
+      </div>
+      </div>
+      <div class="form-group">
+        <label for="poster" class="col-sm-3 control-label text-white">Business Poster*</label>
+        <div class="col-sm-9">
+          {{form.poster}}
+        </div>
+        </div>
+      <div class="form-group">
+      <label for="description" class="col-sm-3 control-label text-white">Description*</label>
+      <div class="col-sm-9">
+        {{form.description}}
+      </div>
+      </div>
+      <div class="form-group mr-auto">
+        <div class="col-sm-9">
+      <button type="submit" class="btn btn-primary text-white">Post Business</button>
+    </div>
+  </div>
+      </form> 
+      
+      
+      </div> 
+   
+    
+  </div>
+  </div>
+  
+{% endblock %}
