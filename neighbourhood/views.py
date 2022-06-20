@@ -117,3 +117,9 @@ def search(request):
       query = ""
     businesses = Business.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
     return render(request, 'business_list.html', {'businesses': businesses})
+  
+def user_business(request,id):
+  profiles=Profile.objects.get(user=id)
+  businesses = Business.objects.filter(user=profiles)
+  return render(request, 'user_business_list.html', {'businesses': businesses})
+  
