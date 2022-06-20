@@ -19,4 +19,9 @@ body {
   text-transform: uppercase;
   letter-spacing: 4px;
   }
-  
+  .col-sm-9{
+    max-width: 100% !important;
+  }
+  .post-btn{
+    background-color: #2F3E56!important;
+  }

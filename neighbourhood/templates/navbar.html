@@ -9,6 +9,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="{% url 'index' %}">Home</a>
     {% if user.is_authenticated %}
+    <a href="{% url 'all_posts' %}">Posts</a>
     <a href="{% url 'user_business' user.id %}">My Businesses</a>
     <a href="{% url 'business' %}">All Businesses</a>
     {% else %}
@@ -66,6 +67,9 @@
             </li>
             <li>
               <a class="dropdown-item" href="{% url 'profile' user.pk %}">My Profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'post' %}">Create Post</a>
             </li>
             <li>
               <a class="dropdown-item" href="{% url 'post_a_business' user.pk %}">Post Business</a>

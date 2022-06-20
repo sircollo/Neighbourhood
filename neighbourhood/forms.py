@@ -23,9 +23,17 @@ class SignInForm(AuthenticationForm):
 class PostBusinessForm(forms.Form):
   name = forms.CharField(label='bname', max_length=50, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Business Name'}), required=True)
   email = forms.EmailField(label='email', widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Business Email'}), required=True)
-  description = forms.CharField(label='bname', max_length=50, widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Business Description'}), required=True)
+  description = forms.CharField(label='bname', widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Business Description'}), required=True)
   poster = forms.ImageField(label='business image',widget=forms.FileInput(attrs={'class':'form-control','placeholder':'Business Poster'}), required=True)
   class Meta:
     model = Business
     fields = '__all__'
+    
+class PostForm(forms.Form):
+  title = forms.CharField(label='title', max_length=50, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Post title'}), required=True)
+  message = forms.CharField(label='message', widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Post Message'}), required=True)
+  class Meta:
+    model = Post
+    fields = ['title', 'message']   
+
     

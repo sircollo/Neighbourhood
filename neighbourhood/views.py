@@ -122,4 +122,23 @@ def user_business(request,id):
   profiles=Profile.objects.get(user=id)
   businesses = Business.objects.filter(user=profiles)
   return render(request, 'user_business_list.html', {'businesses': businesses})
+
+
+def create_post(request):
+  user = request.user
+  profiles = Profile.objects.get(user=user)
+  # neighbourhood = Neighbourhood.objects.get(name=profiles)
+  if request.method == 'POST':
+    form = PostForm(request.POST)
+    if form.is_valid():
+      title = form.cleaned_data['title']
+      message = form.cleaned_data['message']
+      new_post =Post(title=title,message=message,user=profiles)
+      new_post.save()
+      return redirect('index')
+  form = PostForm()
+  return render(request, 'post_form.html',{'form': form})
+
+def postList(request):
+  return render(request, 'posts.html')
   

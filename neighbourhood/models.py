@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.urls import reverse
 from neighbourhood.models import *
+import datetime
 # Create your models here.
 class Neighbourhood(models.Model):
   name = models.CharField(max_length=30)
@@ -76,3 +77,16 @@ class Business(models.Model):
   @classmethod
   def search_business(cls, name):
     return cls.objects.filter(name__icontains=name).all()
+  
+class Post(models.Model):
+  title = models.CharField(max_length=30)
+  message = models.TextField()
+  neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL,null=True)
+  date_posted = models.DateTimeField(auto_now_add=True)
+  user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+  
+  def __str__(self):
+    return self.title
+  
+  class Meta():
+    ordering = ['-date_posted']
