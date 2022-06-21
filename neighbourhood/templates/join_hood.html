@@ -41,7 +41,7 @@
     {% endfor %}
     {% else %}
     <p class="text-danger">No neighbourhoods found</p>
-    <a href="" ><button class="btn btn-danger">Create Hood</button></a>
+    <a href="{% url 'create' user.id%}" ><button class="btn btn-danger">Create Hood</button></a>
     {% endif %}
   </div>
 </div>

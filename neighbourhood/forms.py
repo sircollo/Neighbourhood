@@ -35,5 +35,16 @@ class PostForm(forms.Form):
   class Meta:
     model = Post
     fields = ['title', 'message']   
+    
+class CreateHoodForm(forms.Form):
+  name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Name'}), required=True)
+  location = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Location'}), required=True)
+  occupants = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Occupants'}), required=True)
+  health_contact = forms.IntegerField( widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Health Facility Contact'}), required=True)
+  police_contact = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control','placeholder':'Police Contact'}), required=True)
+  area_image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control','placeholder':'Neighbourhood Image'}), required=True)
+  class Meta:
+    model = Neighbourhood
+    fields = ['name', 'location', 'occupants','area_image','health_contact','police_contact']
 
     

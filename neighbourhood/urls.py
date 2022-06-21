@@ -18,6 +18,8 @@ urlpatterns = [
     url('create-post/', views.create_post, name='post'),
     url('all-posts/', views.postList, name='all_posts'),
     url('join-hood/(\d+)/', views.join_hood, name='join'),
+    # url('leave-hood/(\d+)/', views.leave_hood, name='leave'),
+    url('create-hood/(\d+)/', views.create_hood, name='create'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

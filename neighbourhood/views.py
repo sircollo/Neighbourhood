@@ -165,3 +165,29 @@ def join_hood(request,id):
   context = {'profiles':profiles, 'neighbourhoods':neighbourhoods,'hoods':hoods}
   return render(request, 'join_hood.html',{'profiles':profiles, 'neighbourhoods':neighbourhoods,'hoods':hoods})
 
+# def leave_hood(request,id):
+#     profile = Profile.objects.get(user=request.user)
+#     hood = get_object_or_404(Hood, name=name)
+#     profile.hood = None
+#     profile.save()
+#     messages.success(request, 'You have successfully left the hood')
+#     return redirect('hoods')
+
+def create_hood(request,id):
+    user = request.user
+    profile = Profile.objects.get(user=id)
+    if request.method == 'POST':
+      form = CreateHoodForm(request.POST,request.FILES)
+      if form.is_valid():
+        name = form.cleaned_data['name']
+        location = form.cleaned_data['location']
+        occupants = form.cleaned_data['occupants']
+        health_contact = form.cleaned_data['health_contact']
+        police_contact = form.cleaned_data['police_contact']
+        area_image = form.cleaned_data['area_image']
+        admin = profile
+        new_hood = Neighbourhood(name=name,location=location,occupants=occupants,health_contact=health_contact,police_contact=police_contact,admin=admin,area_image=area_image)
+        new_hood.save()
+        return redirect('neighbourhood')
+    form = CreateHoodForm
+    return render(request, 'create_hood.html',{'form':form})

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/posts.css' %}">
+<div class="container-fluid py-4">
+  <div class="container center mt-2">
+<form action="" method="POST" enctype="multipart/form-data">
+  {%csrf_token%}
+  {{form}}
+  <input type="submit" class="btn btn-danger" value="Create Hood">
+</form>
+</div>
+</div>
+{% endblock %}

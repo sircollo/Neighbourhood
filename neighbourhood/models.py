@@ -10,9 +10,9 @@ class Neighbourhood(models.Model):
   location = models.CharField(max_length=30)
   occupants = models.IntegerField(default=0)
   admin = models.ForeignKey("Profile",on_delete=models.CASCADE,related_name='neighbour')
-  health_contact = models.IntegerField(null=True)
-  police_contact = models.IntegerField(null=True)
-  area_image = CloudinaryField('image', blank=True)
+  health_contact = models.IntegerField(null=True,default=0)
+  police_contact = models.IntegerField(null=True,default=0)
+  area_image = CloudinaryField('image', blank=True,default=True)
   def __str__(self):
     return self.name
   
