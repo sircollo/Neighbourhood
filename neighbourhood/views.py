@@ -8,6 +8,7 @@ from django.views.generic.edit import View
 from django.views.generic import ListView
 from django.db.models import Q
 from .email import send_welcome_email
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
   neighbourhoods = Neighbourhood.objects.all()
@@ -62,6 +63,7 @@ class SignOutView(View):
     # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return redirect('index')
   
+@login_required(login_url='signin')  
 def profile(request,id):
   user = request.user
   profiles=Profile.objects.get(user=id)
@@ -69,6 +71,7 @@ def profile(request,id):
   context = {'profile':profiles,'businesses':businesses}
   return render(request, 'profiles.html', context)
 
+@login_required(login_url='signin')  
 def businesspost(request,id):
   profiles=Profile.objects.get(user=id)
   # neighbourhood = Neighbourhood.objects.get(profile=id)
@@ -91,11 +94,13 @@ def businesspost(request,id):
   context = {'form': form, 'profile': profiles,'messages': messages}
   return render(request, 'post_business.html',context)
 
+@login_required(login_url='signin')  
 def business(request):
   business = Business.objects.all()
   context = {'businesses':business}
   return render(request, 'businesses.html', context)
 
+@login_required(login_url='signin')
 def neighbourhoods(request):
   neighbourhoods = Neighbourhood.objects.all()
   context = {'neighbourhoods':neighbourhoods}
@@ -145,8 +150,6 @@ def create_post(request):
 def postList(request):
   posts = Post.objects.all()
   return render(request, 'posts.html',{'posts': posts})
-# def join(request):
-#   return render(request, 'join_hood.html')
 
 def join_hood(request,id):
   user = request.user
@@ -164,14 +167,6 @@ def join_hood(request,id):
     return redirect('join',id)
   context = {'profiles':profiles, 'neighbourhoods':neighbourhoods,'hoods':hoods}
   return render(request, 'join_hood.html',{'profiles':profiles, 'neighbourhoods':neighbourhoods,'hoods':hoods})
-
-# def leave_hood(request,id):
-#     profile = Profile.objects.get(user=request.user)
-#     hood = get_object_or_404(Hood, name=name)
-#     profile.hood = None
-#     profile.save()
-#     messages.success(request, 'You have successfully left the hood')
-#     return redirect('hoods')
 
 def create_hood(request,id):
     user = request.user
