@@ -145,4 +145,23 @@ def create_post(request):
 def postList(request):
   posts = Post.objects.all()
   return render(request, 'posts.html',{'posts': posts})
-  
+# def join(request):
+#   return render(request, 'join_hood.html')
+
+def join_hood(request,id):
+  user = request.user
+  profiles = Profile.objects.get(user=id)
+  query = request.GET.get('search_hood')
+  if not query:
+    query = ''
+  hoods = Neighbourhood.objects.filter(Q(name__icontains=query) | Q(location__icontains=query))
+  # neighbourhoods = Neighbourhood.objects.filter(name=query)
+  if request.method == 'POST':
+    user = Profile.objects.get(user=request.user)
+    profile.neighbourhood = hoods
+    user.save()
+    messages.success(request, 'Joined Successfully')
+    return redirect('join',id)
+  context = {'profiles':profiles, 'neighbourhoods':neighbourhoods,'hoods':hoods}
+  return render(request, 'join_hood.html',{'profiles':profiles, 'neighbourhoods':neighbourhoods,'hoods':hoods})
+

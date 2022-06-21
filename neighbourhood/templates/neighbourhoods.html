@@ -18,7 +18,10 @@
                <h5 class="card-title">Name: {{hood.name}}</h5>
                <p class="card-text">Occupants: {{hood.occupants}}</p>
                <p class="card-text">Location: {{hood.location}}</p>
-               <a href="#" class="btn btn-primary">View Hood</a>
+               <form action="" method="POST">
+                  {%csrf_token%}
+                  <input type="submit" class="btn btn-danger" value="Join">
+                </form>
             </div>
          </div>
       </div>

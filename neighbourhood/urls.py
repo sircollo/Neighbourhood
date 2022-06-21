@@ -17,6 +17,7 @@ urlpatterns = [
     url('my_businesses/(\d+)/', views.user_business, name='user_business'),
     url('create-post/', views.create_post, name='post'),
     url('all-posts/', views.postList, name='all_posts'),
+    url('join-hood/(\d+)/', views.join_hood, name='join'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

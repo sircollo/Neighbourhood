@@ -47,11 +47,13 @@
       <!-- Right links -->
       <ul class="navbar-nav ms-auto d-flex flex-row">
         <!-- Icon -->
+        {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link me-3 me-lg-0" href="#">
+          <a class="nav-link me-3 me-lg-0 text-white" href="{% url 'join' user.id %}">Join hood
             <i class="fas fa-fill-drip"></i>
           </a>
         </li>
+        {% endif %}
 
         <!-- Avatar -->
         {% if user.is_authenticated %}
